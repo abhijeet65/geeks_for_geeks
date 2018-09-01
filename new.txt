@@ -1,0 +1,28 @@
+#include<bits/stdc++.h>
+#include<math.h>
+
+using namespace std;
+
+int main()
+{
+int t;
+cin>>t;
+while(t--)
+{
+int n;
+cin>>n;
+int a[n];
+for(i=1;i<=n;i++)
+cin>>a[i];
+
+for(i=1;i<=n;i++)
+{
+for(j=1;j<=n;j++)
+{
+if(abs(a[i]-a[j])<min)
+min=abs(a[i]-a[j]);
+}
+}
+}
+return 0;
+}
