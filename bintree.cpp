@@ -1,8 +1,6 @@
-#include <iostream>
+#include <bits/stdc++.h>
 #include <vector>
 #include <queue>
-
-#define INT_MAX 10e6
 
 using namespace std;
  
@@ -225,9 +223,34 @@ return(leftroot!=-1)?leftroot:rightroot;
 }
 
 
-
-
-
+void verticalorder(Node root,int dist,map<int,vector<int>> &mp)
+{
+	mp[dist].push_back(root->data);
+	if(root==NULL)
+		return;
+	verticalorder(root->left,dist-1,mp);
+	verticalorder(root->right,dist+1,mp);
+	
+}
+void dispvertical(Node root)
+{
+    map<int,vector<int>> mp;
+	
+	verticalorder(root,0,mp);
+	map<int,vector<int>>::iterator it;
+	
+	int temp=0,i;
+	for(it=mp.begin();it!=mp.end();it++)
+	{
+       for(i=0;i<it->second.size();i++)
+	   {
+		   cout<<it->second[i]<<" ";
+		   
+	   }
+	   cout<<endl;
+	
+    }
+}
 
 
 
@@ -242,7 +265,7 @@ int main()
 root=NULL;
 int n1,n2,i;
 while(1){
-cout<<"enetre the choice\n1:insert\n2:levelorder\n3:height\n4:perlevelmin\n5:display\n6:inorder\n7:insertbstrec\n8:lca\n9:perlevelmax\n";
+cout<<"enetre the choice\n1:insert\n2:levelorder\n3:height\n4:perlevelmin\n5:display\n6:inorder\n7:insertbstrec\n8:lca\n9:dispvertical\n";
 cin>>ch;
 switch(ch)
 {
@@ -253,7 +276,7 @@ root=insertbst(root,item);break;
 case 2:levelorder(root);break;
 case 3:cout<<heightoftree(root)<<"\n";break;
 case 4:perLevelMinimumUtility(root);break;
-case 9:perLevelMinimumUtility2(root);break;
+//case 9:perLevelMinimumUtility2(root);break;
 case 5:display(root,0);break;
 case 6:inorder(root);break;
 case 7:cout<<"enetr the item\n";
@@ -264,6 +287,7 @@ cin>>n1>>n2;
 i=lca(root,n1,n2);
 cout<<i<<"\n ";
 break;
+case 9:dispvertical(root);break;
 default:cout<<"invalid choice\n";
  }
 
