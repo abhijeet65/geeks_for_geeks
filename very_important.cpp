@@ -74,4 +74,13 @@ int main()
 	if(!solve(1,n,size))
 		cout<<"NO SOlution Exits\n";
 }
+/*program for finding the set of numbers whoose square sum results to a particular numbers
+example-n=100;
+so set of solutions are 1.(1,3,4,5,7)
+2.(6,8)
+3.(10);
 
+i.e 10^2==100
+i.e 1^2+3^2+4^2+5^2+7^2==100
+i.e 6^2+8^2==100
+*/
