@@ -1,77 +1,39 @@
 #include<bits/stdc++.h>
-
 using namespace std;
 
-int a[100];
-int stk[100];
-int top=-1;
 
-void push(int x){
-	if(top>=100)
-		cout<<"MAX reached on stack";
-	else
-		top++;
-	stk[top]=x;
-}
-
-void pop()
-{
-	if(top<0)
-		cout<<"Empty Array\n";
-	top--;
-}
-
-void display()
-{
-	int i;
-	for(i=0;i<=top;i++)
-	{
-		cout<<stk[i]<<" ";
-		
-	}
-	cout<<endl;
-}
-int solve(int pos,int sum,int n)
-{
-	int i;
-	static int foundsol=0;
-	if(sum<0)
-		return -1;
-	if(sum>0)
-	{
-		for(i=pos;i<=n;i++)
-		{
-			push(a[i]);
-			solve(i+1,sum-(a[i]*a[i]),n);
-			pop();
-			
-		}
-	}
-	if(sum==0)
-	{
-		foundsol=1;
-		display();
-		return 1;
-	}
-	return foundsol;
-}
 int main()
 {
-	int n;
-	cin>>n;
-	int size=sqrt(n);
-	
-	int i;
-	for(i=1;i<=size;i++)
+	int n,m;
+	cin>>n>>m;
+	int a[n][m];
+	int i,j;
+	for(i=0;i<n;i++)
 	{
-		a[i]=i;
-		
+		for(j=0;j<m;j++)
+			cin>>a[i][j];
 	}
-
-	//for(i=1;i<=size;i++)
-		//cout<<a[i]<<" ";
-	cout<<endl;
-	if(!solve(1,n,size))
-		cout<<"NO SOlution Exits\n";
+	int l=0,p=n-1,q=0,r=m-1;
+	
+while(l<=p && q<=r)
+{
+	for(i=p;i>=l;i--)
+		cout<<a[i][q]<<" ";
+	q++;
+	for(i=q;i<=r;i++)
+	{
+		cout<<a[l][i]<<" ";
+	}
+	l++;
+	for(i=l;i<=p;i++)
+		cout<<a[i][r]<<" ";
+	r--;
+	for(i=r;i>=q;i--)
+		cout<<a[p][i]<<" ";
+	p--;
+		
 }
-
+}
+		
+		
+	

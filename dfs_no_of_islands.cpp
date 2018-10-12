@@ -1,11 +1,11 @@
 #include<bits/stdc++.h>
 #include<algorithm>
-#define N 5
+
 
 using namespace std;
 
 
-bool isSafe(int mat[N][N],int x,int y,bool visited[N][N])
+bool isSafe(int N,int x,int y,int *mat,bool *visited)
 {
 	if(x>=0 && x<N && y>=0 && y<N && mat[x][y] && !visited[x][y])
 		return true;
@@ -13,7 +13,7 @@ bool isSafe(int mat[N][N],int x,int y,bool visited[N][N])
 }
 
 
-void dfs(int mat[N][N],int i,int j,bool visited[N][N])
+void dfs(int N,int i,int j,int *mat,bool *visited)
 {
 	
 	visited[i][j]=true;
@@ -24,9 +24,9 @@ void dfs(int mat[N][N],int i,int j,bool visited[N][N])
 	
 	for(k=0;k<8;k++)
 	{
-		if(isSafe(mat,row[k]+i,col[k]+j,visited)==true)
+		if(isSafe(N,row[k]+i,col[k]+j,mat,visited)==true)
 		{
-			dfs(mat,row[k]+i,col[k]+j,visited);
+			dfs(N,row[k]+i,col[k]+j,&mat,&visited);
 		}
 		
 	}
@@ -37,12 +37,13 @@ void dfs(int mat[N][N],int i,int j,bool visited[N][N])
 
 int main()
 {
-	
+	int N;
+	N=5;
 	int mat[N][N] = {{1, 1, 0, 1, 0},
                    {0, 1, 0, 0, 1},
                    {1, 0, 0, 1, 1},
                    {0, 0, 0, 0, 0},
-	{1, 0, 1, 0, 1} };
+	               {1, 0, 1, 0, 1} };
 		bool visited[N][N];
     memset(visited,false,sizeof(visited));
 	int i,j,count=0;
@@ -51,7 +52,7 @@ int main()
 		for(j=0;j<N;j++)
 		{
 			if(mat[i][j]==1 && !visited[i][j]){
-		         dfs(mat,i,j,visited);
+		         dfs(N,i,j,&mat,&visited);
 				 count++;
 			          }
 		}

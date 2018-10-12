@@ -3,9 +3,10 @@
 #include<string>
 #include<cstdlib>
 #include<cstdio>
+#include<ctype.h>
 using namespace std;
 
-vector<string> v;
+/*vector<string> v;
 
 void swap(char *x,char *y)
 {
@@ -32,18 +33,27 @@ void permut(char *str,int l,int r)
     }
     }
 }
-
+*/
 
 int main() {
 		int t;
 	cin>>t;
 	while(t--)
 	{
-	    char str[10];
+	    stringstream str;
 	    int n;
-	    v.clear();
-	    scanf("%s",str);
-	   n=strlen(str);
+	 char str1[100];
+		cin>>n;
+		str>>n;
+int i;
+		cout<<n;
+		cout<<str;
+	    int len=str.length();
+		for(i=0;i<len-1;i++)
+			str1[i]=str[i];
+		for(i=0;i<len-1;i++)
+			cout<<str1[i];
+	  /* n=strlen(str);
 	    permut(str,0,n-1);
 	    vector<string>::iterator it;
 	    sort(v.begin(),v.end());
@@ -56,7 +66,8 @@ int main() {
 	   
 	   int c=v.size();
 	   cout<<c;
-	}
+	}*/
+}
 	return 0;
 }
 

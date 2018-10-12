@@ -13,15 +13,26 @@ int main()
 {
 	int n;
 	cin>>n;
-	while(n--)
+	int a[n];
+	
+	int i,j,sum=0;
+	for(i=1;i<=n;i++)
 	{
-		int x;
-		cin>>x;
-		if(powerof2(x))
-			cout<<"Yess"<<endl;
-		else
-			cout<<"n0"<<endl;
+		cin>>a[i];
+		
+	
 	}
+	int count=0;
+	for(i=1;i<=n;i++)
+	{
+		for(j=i+1;j<=n;j++)
+		{
+			sum=a[i]+a[j];
+			if(powerof2(sum))
+				count++;
+		}
+	}
+	cout<<count<<endl;
 }
 		
 		

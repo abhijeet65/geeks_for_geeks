@@ -2,9 +2,18 @@
 #include<vector>
 #include<algorithm>
 using namespace std;
-int flag=0;
 
-void printarray(int a[],int n,int b[],int sum)
+int isprime(int x)
+{
+	int i;
+	for(i=2;i<=sqrt(x);i++)
+	{
+	if(x%i==0)
+    return 0; 		
+	}
+	return 1;
+}
+void printarray(int a[],int n,int b[],int *count)
 {
 	int i;
 	//cout<<"(";
@@ -16,16 +25,11 @@ void printarray(int a[],int n,int b[],int sum)
 		if(b[i]==1)
 			v.push_back(a[i]);
 	}
-	sort(v.begin(),v.end());
+	
 	int res=accumulate(v.begin(),v.end(),initialsum);
-	if(res==sum)
+	if(isprime(res))
 	{
-		flag=1;
-		cout<<"(";
-		for(it=v.begin();it!=v.end()-1;it++)
-			cout<<*it<<" ";
-		cout<<*it;
-		cout<<")";
+		(*count)++;
 		
 	}
 	
@@ -33,20 +37,20 @@ void printarray(int a[],int n,int b[],int sum)
 	
 }
 
-void permut(int a[],int n,int k,int b[],int sum)
+void permut(int a[],int n,int k,int b[],int *count)
 {
 	if(k==n)
 	{
 		b[k]=0;
-		printarray(a,n,b,sum);
+		printarray(a,n,b,count);
 		b[k]=1;
-		printarray(a,n,b,sum);
+		printarray(a,n,b,count);
 		return;
 	}
 	b[k]=0;
-	permut(a,n,k+1,b,sum);
+	permut(a,n,k+1,b,count);
 	b[k]=1;
-	permut(a,n,k+1,b,sum);
+	permut(a,n,k+1,b,count);
 		
 }
 
@@ -58,7 +62,7 @@ int main() {
 	cin>>t;
 	while(t--)
 	{
-		flag=0;
+	
 	    int n,i;
 	    cin>>n;
 	    int a[n],b[n];
@@ -66,12 +70,10 @@ int main() {
 	    cin>>a[i];
 		b[i]=0;
 		}
-		int sum;
-		cin>>sum;
-	    permut(a,n-1,0,b,sum);
-		if(flag==0)
-			cout<<"Empty\n";
+		int count=0;
+	    permut(a,n-1,0,b,&count);
+		cout<<count<<endl;
 	}
-	
+
 	return 0;
 }
