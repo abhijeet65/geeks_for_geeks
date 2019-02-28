@@ -6,7 +6,7 @@
 #include<ctype.h>
 using namespace std;
 
-/*vector<string> v;
+vector<string> v;
 
 void swap(char *x,char *y)
 {
@@ -33,7 +33,7 @@ void permut(char *str,int l,int r)
     }
     }
 }
-*/
+
 
 int main() {
 		int t;
